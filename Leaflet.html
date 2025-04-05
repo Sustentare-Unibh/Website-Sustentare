@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapa com OpenStreetMap e Leaflet</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 1000px; }
+  </style>
+</head>
+<body>
+
+<h3>Mapa com OpenStreetMap</h3>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  // Cria o mapa sem centralização inicial
+  var map = L.map('map');
+
+  // Adiciona camada do OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Adiciona marcador ao clicar no mapa
+  map.on('click', function(e) {
+    var marker = L.marker(e.latlng).addTo(map);
+    marker.bindPopup('Marcador adicionado em: ' + e.latlng.toString()).openPopup();
+  });
+
+  // Tenta obter a localização do usuário
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var userLat = position.coords.latitude;
+      var userLng = position.coords.longitude;
+
+      // Centraliza o mapa na localização do usuário
+      map.setView([userLat, userLng], 13);
+
+      // Adiciona marcador na localização do usuário
+      L.marker([userLat, userLng]).addTo(map)
+        .bindPopup('Sua localização atual! 📍')
+        .openPopup();
+
+    }, function() {
+      alert('Não foi possível acessar sua localização.');
+      // Opcional: define uma visão padrão caso a geolocalização falhe
+      map.setView([0, 0], 2);
+    });
+  } else {
+    alert('Geolocalização não é suportada pelo seu navegador.');
+    map.setView([0, 0], 2);
+  }
+</script>
+
+</body>
+</html>
