@@ -1,95 +1,134 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Mapa com MapTiler e Leaflet</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    #map { height: 1000px; }
-    #manual-location { margin: 10px 0; }
-  </style>
-</head>
-<body>
-<h1>Mapa com MapTiler Satellite</h1>
+  <head>
+    <title>Mapa com MapTiler e Leaflet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div id="manual-location" style="display: none;">
-  <label>Digite uma cidade ou local:</label>
-  <input type="text" id="locationInput" placeholder="Ex: São Paulo, SP">
-  <button onclick="searchLocation()">Buscar</button>
-</div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 1000px;
+      }
+      #manual-location {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mapa com MapTiler - Normal ou Satélite 🌍</h1>
 
-<div id="map"></div>
+    <div id="manual-location" style="display: none">
+      <label>Digite uma cidade ou local:</label>
+      <input type="text" id="locationInput" placeholder="Ex: São Paulo, SP" />
+      <button onclick="searchLocation()">Buscar</button>
+    </div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-  var map = L.map('map');
+    <div id="map"></div>
 
-  // URL correta para MapTiler tiles
-  const maptilerApiKey = 'GEflBa6Sez5JCAJ6HOuV';
-  L.tileLayer(`https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=${maptilerApiKey}`, {
-    attribution: '&copy; MapTiler &copy; OpenStreetMap contributors',
-    tileSize: 512,
-    zoomOffset: -1,
-    minZoom: 0,
-    maxZoom: 18,
-  }).addTo(map);
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      var map = L.map("map")
 
-  // Clique no mapa para adicionar marcador
-  map.on('click', function(e) {
-    var marker = L.marker(e.latlng).addTo(map);
-    marker.bindPopup('Marcador adicionado em: ' + e.latlng.toString()).openPopup();
-  });
+      const maptilerApiKey = "GEflBa6Sez5JCAJ6HOuV"
 
-  function searchLocation() {
-    var location = document.getElementById('locationInput').value;
-    if (!location) {
-      alert('Por favor, digite um local.');
-      return;
-    }
-
-    fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(location))
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.length > 0) {
-          var lat = data[0].lat;
-          var lon = data[0].lon;
-          map.setView([lat, lon], 13);
-          L.marker([lat, lon]).addTo(map)
-            .bindPopup('Local encontrado: ' + location)
-            .openPopup();
-        } else {
-          alert('Local não encontrado.');
+      // Camada de mapa padrão
+      var streetLayer = L.tileLayer(
+        `https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=${maptilerApiKey}`,
+        {
+          attribution: "&copy; MapTiler &copy; OpenStreetMap contributors",
+          tileSize: 512,
+          zoomOffset: -1,
+          minZoom: 0,
+          maxZoom: 20,
         }
+      )
+
+      // Camada de mapa satélite
+      var satelliteLayer = L.tileLayer(
+        `https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=${maptilerApiKey}`,
+        {
+          attribution: "&copy; MapTiler &copy; OpenStreetMap contributors",
+          tileSize: 512,
+          zoomOffset: -1,
+          minZoom: 0,
+          maxZoom: 20,
+        }
+      )
+
+      // Adiciona o mapa padrão por padrão
+      streetLayer.addTo(map)
+
+      // Controle para alternar as camadas
+      var baseMaps = {
+        "Mapa de Ruas": streetLayer,
+        "Satélite": satelliteLayer,
+      }
+
+      L.control.layers(baseMaps).addTo(map)
+
+      // Clique no mapa para adicionar marcador
+      map.on("click", function (e) {
+        var marker = L.marker(e.latlng).addTo(map)
+        marker
+          .bindPopup("Marcador adicionado em: " + e.latlng.toString())
+          .openPopup()
       })
-      .catch(() => {
-        alert('Erro ao buscar localização.');
-      });
-  }
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var userLat = position.coords.latitude;
-      var userLng = position.coords.longitude;
+      function searchLocation() {
+        var location = document.getElementById("locationInput").value
+        if (!location) {
+          alert("Por favor, digite um local.")
+          return
+        }
 
-      map.setView([userLat, userLng], 13);
+        fetch(
+          "https://nominatim.openstreetmap.org/search?format=json&q=" +
+            encodeURIComponent(location)
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data && data.length > 0) {
+              var lat = data[0].lat
+              var lon = data[0].lon
+              map.setView([lat, lon], 13)
+              L.marker([lat, lon])
+                .addTo(map)
+                .bindPopup("Local encontrado: " + location)
+                .openPopup()
+            } else {
+              alert("Local não encontrado.")
+            }
+          })
+          .catch(() => {
+            alert("Erro ao buscar localização.")
+          })
+      }
 
-      L.marker([userLat, userLng]).addTo(map)
-        .bindPopup('Sua localização atual! 📍')
-        .openPopup();
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            var userLat = position.coords.latitude
+            var userLng = position.coords.longitude
 
-    }, function() {
-      alert('Não foi possível acessar sua localização.');
-      document.getElementById('manual-location').style.display = 'block';
-      map.setView([0, 0], 2);
-    });
-  } else {
-    alert('Geolocalização não suportada pelo seu navegador.');
-    document.getElementById('manual-location').style.display = 'block';
-    map.setView([0, 0], 2);
-  }
-</script>
+            map.setView([userLat, userLng], 13)
 
-</body>
+            L.marker([userLat, userLng])
+              .addTo(map)
+              .bindPopup("Sua localização atual! 📍")
+              .openPopup()
+          },
+          function () {
+            alert("Não foi possível acessar sua localização.")
+            document.getElementById("manual-location").style.display = "block"
+            map.setView([0, 0], 2)
+          }
+        )
+      } else {
+        alert("Geolocalização não suportada pelo seu navegador.")
+        document.getElementById("manual-location").style.display = "block"
+        map.setView([0, 0], 2)
+      }
+    </script>
+  </body>
 </html>
