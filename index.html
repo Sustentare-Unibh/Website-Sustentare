@@ -33,9 +33,12 @@
       const maptilerApiKey = "GEflBa6Sez5JCAJ6HOuV"
 
       // Camada OpenStreetMap padrão
-      var osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap contributors",
-      })
+      var osmLayer = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "&copy; OpenStreetMap contributors",
+        }
+      )
 
       // Camada Satélite do MapTiler
       var satelliteLayer = L.tileLayer(
@@ -50,12 +53,12 @@
       )
 
       // Adiciona camada padrão inicial
-      osmLayer.addTo(map)
+      satelliteLayer.addTo(map)
 
       // Controles de camadas
       var baseMaps = {
-        "OpenStreetMap": osmLayer,
-        "Satélite": satelliteLayer,
+        Satélite: satelliteLayer,
+        OpenStreetMap: osmLayer,
       }
 
       L.control.layers(baseMaps).addTo(map)
