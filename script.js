@@ -1,4 +1,4 @@
-// Inicializa o mapa
+// Inicializa o mapa já mostrando algo
 var map = L.map("map").setView([0, 0], 2)
 
 // Camada base - OpenStreetMap
@@ -9,8 +9,8 @@ var openStreetLayer = L.tileLayer(
   }
 ).addTo(map)
 
-// Camada satélite - MapTiler
-const maptilerApiKey = "GEflBa6Sez5JCAJ6HOuV";
+// Camada satélite - MapTiler (carregamento manual)
+const maptilerApiKey = "GEflBa6Sez5JCAJ6HOuV"
 var satelliteLayer = L.tileLayer(
   `https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=${maptilerApiKey}`,
   {
@@ -22,41 +22,38 @@ var satelliteLayer = L.tileLayer(
   }
 )
 
-// Controles de camada
+// Controles de camada (não troca sozinho)
 var baseMaps = {
-  Street: openStreetLayer,
-  Satélite: satelliteLayer,
+  "Rua (OpenStreetMap)": openStreetLayer,
+  "Satélite (MapTiler)": satelliteLayer,
 }
-
 L.control.layers(baseMaps).addTo(map)
 
-// Função para pré-carregar tiles na área do usuário
-function preloadTiles(lat, lng, zoom) {
-  const tileSize = 256
-  const point = map.project([lat, lng], zoom)
+// Geolocalização (assíncrona, não trava o mapa)
+if (navigator.geolocation) {
+  setTimeout(() => {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        var userLat = position.coords.latitude
+        var userLng = position.coords.longitude
 
-  const tileX = Math.floor(point.x / tileSize)
-  const tileY = Math.floor(point.y / tileSize)
+        map.setView([userLat, userLng], 13)
 
-  const tileLayer = map._layers[Object.keys(map._layers).find(key => map._layers[key] instanceof L.TileLayer)]
-
-  for (let dx = -1; dx <= 1; dx++) {
-    for (let dy = -1; dy <= 1; dy++) {
-      const x = tileX + dx
-      const y = tileY + dy
-
-      tileLayer.createTile({ x, y, z: zoom }, document.createElement('div'))
-    }
-  }
+        L.marker([userLat, userLng])
+          .addTo(map)
+          .bindPopup("Sua localização atual 📍")
+          .openPopup()
+      },
+      function () {
+        document.getElementById("manual-location").style.display = "block"
+      }
+    )
+  }, 1000) // espera 1 segundo antes de tentar localizar
+} else {
+  document.getElementById("manual-location").style.display = "block"
 }
 
-// Adiciona marcador ao clicar no mapa
-map.on("click", function (e) {
-  var marker = L.marker(e.latlng).addTo(map)
-  marker.bindPopup("Marcador em: " + e.latlng.toString()).openPopup()
-})
-
-// Função para buscar local manualmente
+// Função para buscar local manualmente (rápido!)
 function searchLocation() {
   var location = document.getElementById("locationInput").value
   if (!location) {
@@ -74,7 +71,7 @@ function searchLocation() {
         var lat = data[0].lat
         var lon = data[0].lon
         map.setView([lat, lon], 13)
-        preloadTiles(lat, lon, 13) // <- aqui pré-carregamos os tiles
+
         L.marker([lat, lon])
           .addTo(map)
           .bindPopup("Local encontrado: " + location)
@@ -88,26 +85,8 @@ function searchLocation() {
     })
 }
 
-// Tenta obter a localização do usuário
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      var userLat = position.coords.latitude
-      var userLng = position.coords.longitude
-
-      map.setView([userLat, userLng], 13)
-      preloadTiles(userLat, userLng, 13) // <- aqui pré-carregamos os tiles
-      L.marker([userLat, userLng])
-        .addTo(map)
-        .bindPopup("Sua localização atual 📍")
-        .openPopup()
-    },
-    function () {
-      document.getElementById("manual-location").style.display = "block"
-      map.setView([0, 0], 2)
-    }
-  )
-} else {
-  document.getElementById("manual-location").style.display = "block"
-  map.setView([0, 0], 2)
-}
+// Adiciona marcador ao clicar no mapa
+map.on("click", function (e) {
+  var marker = L.marker(e.latlng).addTo(map)
+  marker.bindPopup("Marcador em: " + e.latlng.toString()).openPopup()
+})
