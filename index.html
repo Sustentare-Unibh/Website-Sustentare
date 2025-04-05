@@ -8,50 +8,82 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     #map { height: 1000px; }
+    #manual-location {
+      margin: 10px 0;
+    }
   </style>
 </head>
 <body>
 <h1>Using Leaflet</h1>
 <h3>Mapa com OpenStreetMap</h3>
+
+<div id="manual-location" style="display: none;">
+  <label>Digite uma cidade ou local:</label>
+  <input type="text" id="locationInput" placeholder="Ex: São Paulo, SP">
+  <button onclick="searchLocation()">Buscar</button>
+</div>
+
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-  // Cria o mapa sem centralização inicial
   var map = L.map('map');
 
-  // Adiciona camada do OpenStreetMap
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Adiciona marcador ao clicar no mapa
   map.on('click', function(e) {
     var marker = L.marker(e.latlng).addTo(map);
     marker.bindPopup('Marcador adicionado em: ' + e.latlng.toString()).openPopup();
   });
 
-  // Tenta obter a localização do usuário
+  function searchLocation() {
+    var location = document.getElementById('locationInput').value;
+    if (!location) {
+      alert('Por favor, digite um local.');
+      return;
+    }
+
+    // Busca usando Nominatim (OpenStreetMap)
+    fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(location))
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          var lat = data[0].lat;
+          var lon = data[0].lon;
+          map.setView([lat, lon], 13);
+          L.marker([lat, lon]).addTo(map)
+            .bindPopup('Local encontrado: ' + location)
+            .openPopup();
+        } else {
+          alert('Local não encontrado.');
+        }
+      })
+      .catch(() => {
+        alert('Erro ao buscar localização.');
+      });
+  }
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var userLat = position.coords.latitude;
       var userLng = position.coords.longitude;
 
-      // Centraliza o mapa na localização do usuário
       map.setView([userLat, userLng], 13);
 
-      // Adiciona marcador na localização do usuário
       L.marker([userLat, userLng]).addTo(map)
         .bindPopup('Sua localização atual! 📍')
         .openPopup();
 
-    }, function() {
+    }, function(error) {
       alert('Não foi possível acessar sua localização.');
-      // Opcional: define uma visão padrão caso a geolocalização falhe
+      document.getElementById('manual-location').style.display = 'block';
       map.setView([0, 0], 2);
     });
   } else {
     alert('Geolocalização não é suportada pelo seu navegador.');
+    document.getElementById('manual-location').style.display = 'block';
     map.setView([0, 0], 2);
   }
 </script>
