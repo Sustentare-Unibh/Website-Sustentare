@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mapa com MapTiler e Leaflet</title>
+    <title>Mapa com MapTiler e OpenStreetMap</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -16,7 +16,7 @@
     </style>
   </head>
   <body>
-    <h1>Mapa com MapTiler - Normal ou Satélite 🌍</h1>
+    <h1>Mapa com opções de Satélite e OpenStreetMap</h1>
 
     <div id="manual-location" style="display: none">
       <label>Digite uma cidade ou local:</label>
@@ -32,19 +32,12 @@
 
       const maptilerApiKey = "GEflBa6Sez5JCAJ6HOuV"
 
-      // Camada de mapa padrão
-      var streetLayer = L.tileLayer(
-        `https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=${maptilerApiKey}`,
-        {
-          attribution: "&copy; MapTiler &copy; OpenStreetMap contributors",
-          tileSize: 512,
-          zoomOffset: -1,
-          minZoom: 0,
-          maxZoom: 20,
-        }
-      )
+      // Camada OpenStreetMap padrão
+      var osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+      })
 
-      // Camada de mapa satélite
+      // Camada Satélite do MapTiler
       var satelliteLayer = L.tileLayer(
         `https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=${maptilerApiKey}`,
         {
@@ -56,12 +49,12 @@
         }
       )
 
-      // Adiciona o mapa padrão por padrão
-      streetLayer.addTo(map)
+      // Adiciona camada padrão inicial
+      osmLayer.addTo(map)
 
-      // Controle para alternar as camadas
+      // Controles de camadas
       var baseMaps = {
-        "Mapa de Ruas": streetLayer,
+        "OpenStreetMap": osmLayer,
         "Satélite": satelliteLayer,
       }
 
