@@ -1,130 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <title>Mapa com MapTiler e OpenStreetMap</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa Interativo - OpenStreetMap e Satélite</title>
 
+    <!-- Estilos do Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-      #map {
-        height: 1000px;
-      }
-      #manual-location {
-        margin: 10px 0;
-      }
-    </style>
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Mapa com opções de Satélite e OpenStreetMap</h1>
+    <header>
+      <h1>Reporte 🌍</h1>
+      <p>
+        Visualize o mapa em modo normal ou satélite, e encontre qualquer local
+        digitando o nome da cidade.
+      </p>
+    </header>
 
-    <div id="manual-location" style="display: none">
-      <label>Digite uma cidade ou local:</label>
+    <!-- Formulário para busca manual de localizações -->
+    <section id="manual-location" class="location-search">
+      <label for="locationInput">Buscar local:</label>
       <input type="text" id="locationInput" placeholder="Ex: São Paulo, SP" />
       <button onclick="searchLocation()">Buscar</button>
-    </div>
+    </section>
 
+    <!-- Container do mapa -->
     <div id="map"></div>
 
+    <!-- Scripts do Leaflet e personalizados -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-      var map = L.map("map")
-
-      const maptilerApiKey = "GEflBa6Sez5JCAJ6HOuV"
-
-      // Camada OpenStreetMap padrão
-      var osmLayer = L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-          attribution: "&copy; OpenStreetMap contributors",
-        }
-      )
-
-      // Camada Satélite do MapTiler
-      var satelliteLayer = L.tileLayer(
-        `https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=${maptilerApiKey}`,
-        {
-          attribution: "&copy; MapTiler &copy; OpenStreetMap contributors",
-          tileSize: 512,
-          zoomOffset: -1,
-          minZoom: 0,
-          maxZoom: 20,
-        }
-      )
-
-      // Adiciona camada padrão inicial
-      satelliteLayer.addTo(map)
-
-      // Controles de camadas
-      var baseMaps = {
-        Satélite: satelliteLayer,
-        OpenStreetMap: osmLayer,
-      }
-
-      L.control.layers(baseMaps).addTo(map)
-
-      // Clique no mapa para adicionar marcador
-      map.on("click", function (e) {
-        var marker = L.marker(e.latlng).addTo(map)
-        marker
-          .bindPopup("Marcador adicionado em: " + e.latlng.toString())
-          .openPopup()
-      })
-
-      function searchLocation() {
-        var location = document.getElementById("locationInput").value
-        if (!location) {
-          alert("Por favor, digite um local.")
-          return
-        }
-
-        fetch(
-          "https://nominatim.openstreetmap.org/search?format=json&q=" +
-            encodeURIComponent(location)
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data && data.length > 0) {
-              var lat = data[0].lat
-              var lon = data[0].lon
-              map.setView([lat, lon], 13)
-              L.marker([lat, lon])
-                .addTo(map)
-                .bindPopup("Local encontrado: " + location)
-                .openPopup()
-            } else {
-              alert("Local não encontrado.")
-            }
-          })
-          .catch(() => {
-            alert("Erro ao buscar localização.")
-          })
-      }
-
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          function (position) {
-            var userLat = position.coords.latitude
-            var userLng = position.coords.longitude
-
-            map.setView([userLat, userLng], 13)
-
-            L.marker([userLat, userLng])
-              .addTo(map)
-              .bindPopup("Sua localização atual! 📍")
-              .openPopup()
-          },
-          function () {
-            alert("Não foi possível acessar sua localização.")
-            document.getElementById("manual-location").style.display = "block"
-            map.setView([0, 0], 2)
-          }
-        )
-      } else {
-        alert("Geolocalização não suportada pelo seu navegador.")
-        document.getElementById("manual-location").style.display = "block"
-        map.setView([0, 0], 2)
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
