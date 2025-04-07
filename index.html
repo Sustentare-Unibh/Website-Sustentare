@@ -1,40 +1,89 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mapa Interativo - OpenStreetMap e Satélite</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <title>Sustentare</title>
+</head>
+<body>
+  <header>
+    <div class="logo">Sustentare</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html">Sobre</a></li>
+        <li><a href="index.html">Serviços</a></li>
+        <li><a href="index.html">Contato</a></li>
+        <li><a href="map/map.html">Mapa</a></li>
+      </ul>
+    </nav>
+    <button class="button">Entrar</button>
+  </header>
 
-    <!-- Estilos do Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-    <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Reporte 🌍</h1>
-      <p>
-        Visualize o mapa em modo normal ou satélite, e encontre qualquer local
-        digitando o nome da cidade.
-      </p>
-    </header>
-
-    <!-- Formulário para busca manual de localizações -->
-    <section id="manual-location" class="location-search">
-      <label for="locationInput">Buscar local:</label>
-      <input type="text" id="locationInput" placeholder="Ex: São Paulo, SP" />
-      <button onclick="searchLocation()">Buscar</button>
+  <main>
+    <section>
+      <h1>Bem-vindo ao Sustentare</h1>
+      <p>O Sustentare é uma plataforma dedicada a ajudar comunidades a reportar e monitorar ocorrências de enchentes. Juntos, podemos agir rapidamente para minimizar danos e proteger vidas.</p>
     </section>
 
+    <a href="map/map.html" class="map-button">Ver Mapa de Enchentes</a>
+  
+    <section>
+      <section class="sobre">
+        <h2>Sobre o Sustentare 🌿</h2>
+        <p>
+          O <strong>Sustentare</strong> é uma plataforma criada para te manter informado sobre vias interditadas por desastres naturais como enchentes, deslizamentos e outros imprevistos. Nosso objetivo é simples: manter você, sua família e sua comunidade em segurança!
+        </p>
+        <p>
+          💡 Com o Sustentare, você não apenas acompanha as atualizações em tempo real, mas também contribui! Marque no mapa pontos de bloqueio e ajude a espalhar informações confiáveis e rápidas.
+        </p>
+        <ul>
+          <li>✅ <strong>Mapeamento colaborativo:</strong> Ajude a marcar vias interditadas e mantenha a comunidade informada.</li>
+          <li>✅ <strong>Alertas em tempo real:</strong> Saiba rapidamente quando houver bloqueios próximos à sua localização.</li>
+          <li>✅ <strong>Monitoramento da sua residência:</strong> Cadastre seu endereço e receba alertas personalizados para sua região.</li>
+          <li>✅ <strong>Geolocalização integrada:</strong> Detectamos sua localização automaticamente para manter você sempre atualizado.</li>
+          <li>✅ <strong>Conta personalizada:</strong> Faça login e salve suas preferências de alerta para um monitoramento eficiente.</li>
+          <li>✅ <strong>Alertas por e-mail:</strong> Não dependa apenas de notificações no celular — receba atualizações importantes diretamente na sua caixa de entrada!</li>
+        </ul>
+        <p>
+          🚀 O <strong>Sustentare</strong> é mais que um mapa: é o seu escudo digital contra imprevistos, criado para proteger o que realmente importa!
+        </p>
+      </section>
+      
+  </main>
   
 
 
-    <!-- Container do mapa -->
-    <div id="map"></div>
-
-    <!-- Scripts do Leaflet e personalizados -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="script.js"></script>
-  </body>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Sobre Nós</h3>
+        <p>Somos uma empresa dedicada a fornecer as melhores soluções digitais para você.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Serviços</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Siga-nos</h3>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Sustentare. Todos os direitos reservados.
+    </div>
+  </footer>
+  
+  
+</body>
 </html>
