@@ -2,7 +2,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: azure;
+  background-color: #f4f4f9;
   font-family: Arial, sans-serif;
 }
 
