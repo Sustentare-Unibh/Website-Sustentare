@@ -6,12 +6,13 @@ body {
   font-family: Arial, sans-serif;
 }
 
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #7c3399;
-  color: white;
+  background-color: #39b339;
+  color: rgb(228, 228, 228);
   padding: 15px 30px;
 }
 
@@ -33,34 +34,35 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: rgb(255, 255, 255);
   text-decoration: none;
   transition: color 0.3s;
 }
 
 nav ul li a:hover {
-  color: #d1e9ff;
+  color: #d1ffe3;
 }
 
 .button {
   background-color: white;
-  color: #7c3399;
-  padding: 8px 16px;
+  color: #39b339;
+  padding: 12px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  
 }
 
 .button:hover {
-  background-color: #d1e9ff;
-  color: #003366;
+  background-color: #d1ffdd;
+  color: #288028;
 }
 
 
 .map-button {
   display: inline-block;
-  background-color: #8a3baa;
+  background-color: #39b339;
   color: white;
   padding: 12px 24px;
   text-decoration: none;
@@ -68,10 +70,16 @@ nav ul li a:hover {
   transition: background-color 0.3s, transform 0.2s;
   font-weight: bold;
   margin-top: 20px;
+  text-align: center;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .map-button:hover {
-  background-color: #5e2774;
+  background-color: #257a25;
   transform: translateY(-2px);
 }
 
@@ -80,7 +88,7 @@ main {
 }
 
 footer {
-  background-color: #333;
+  background-color: #0c2704;
   color: white;
   padding: 40px 20px;
 }
@@ -127,5 +135,5 @@ footer {
   border-top: 1px solid #555;
   margin-top: 20px;
   font-size: 0.9em;
-  color: #aaa;
+  color: #b8b8b8;
 }
