@@ -1,0 +1,203 @@
+/* Reset simples para melhor compatibilidade */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+header p {
+  color: #555;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #339933;
+  color: white;
+  padding: 15px 30px;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #d1e9ff;
+}
+
+.button {
+  background-color: white;
+  color: #339933;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+  background-color: #d1e9ff;
+  color: #339933;
+}
+
+
+.map-button {
+  display: inline-block;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.map-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* Formulário de busca */
+.location-search {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.location-search input[type="text"] {
+  padding: 8px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.location-search button {
+  padding: 8px 12px;
+  background-color: #339933;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.location-search button:hover {
+  background-color: #2d862d;
+}
+
+/* Container do mapa */
+#map {
+  height: 40vh;
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+p {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+}
+
+.report-section {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.report-section h2 {
+  margin-bottom: 10px;
+}
+
+.report-section p {
+  margin-bottom: 20px;
+}
+
+.report-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-section label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.report-section input,
+.report-section select,
+.report-section textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.report-section button {
+  padding: 10px;
+  background-color: #339933;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.report-section button:hover {
+  background-color: #277e27;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .location-search input[type="text"] {
+    width: 80%;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa Interativo</title>
+
+    <!-- Estilos do Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="./assets/css/pages/map/index.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../index.html" class="logo">Sustentare</a>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="../index.html">Sobre</a></li>
+          <li><a href="../index.html">Serviços</a></li>
+          <li><a href="../index.html">Contato</a></li>
+          <li><a href="#">Mapa </a></li>
+        </ul>
+      </nav>
+      <button class="button">Entrar</button>
+    </header>
+    <p>
+      Visualize o mapa em modo normal ou satélite, e encontre qualquer local
+      digitando o nome da cidade.
+    </p>
+    <!-- Formulário para busca manual de localizações -->
+    <section id="manual-location" class="location-search">
+      <label for="locationInput">Buscar local:</label>
+      <input type="text" id="locationInput" placeholder="Ex: São Paulo, SP" />
+      <button onclick="searchLocation()">Buscar</button>
+    </section>
+
+    <!-- Container do mapa -->
+    <div id="map"></div>
+
+    <section id="report-form" class="report-section">
+      <h2>Reporte um Problema 🚧</h2>
+      <p>
+        Ajude a manter o mapa atualizado! Informe locais com interdições ou
+        riscos.
+      </p>
+
+      <form>
+        <label for="reportLocation">Localização:</label>
+        <input
+          type="text"
+          id="reportLocation"
+          name="reportLocation"
+          placeholder="Digite a cidade ou ponto de referência"
+          required
+        />
+
+        <label for="reportType">Tipo de problema:</label>
+        <select id="reportType" name="reportType" required>
+          <option value="">Selecione</option>
+          <option value="alagamento">Alagamento</option>
+          <option value="deslizamento">Deslizamento</option>
+          <option value="interdicao">Interdição de via</option>
+          <option value="Queda de Arvore">Queda de Arvore</option>
+          <option value="outro">Outro</option>
+        </select>
+
+        <label for="reportDescription">Descrição:</label>
+        <textarea
+          id="reportDescription"
+          name="reportDescription"
+          placeholder="Descreva o problema com detalhes"
+          rows="4"
+          required
+        ></textarea>
+
+        <button type="submit">Enviar Reporte</button>
+      </form>
+    </section>
+
+    <!-- Scripts do Leaflet e personalizados -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="./assets/js/map.js"></script>
+  </body>
+</html>
