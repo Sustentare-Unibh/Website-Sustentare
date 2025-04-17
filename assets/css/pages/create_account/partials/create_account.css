@@ -1,0 +1,106 @@
+body{
+  font-family: Arial;
+  background-color: white;
+  height: 100px;
+  align-items: center;
+
+}
+
+h2{
+  text-align: center;
+  margin: auto;
+}
+
+
+.form-container{
+  background-color: white;
+  padding: 30px;  
+  border-radius: 10px;    
+  width: 250px;
+}
+
+form label {
+
+  display: block;
+  margin-top: 10x;
+}
+
+form input{
+  width: 200x;
+  margin-top: 5px;
+  box-sizing: border-box;
+  padding: 2px;
+
+
+}
+
+button{
+  cursor: pointer;
+  width: 200x;
+
+}
+
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #39b339;
+color: rgb(228, 228, 228);
+padding: 15px 30px;
+}
+
+.logo {
+font-size: 1.5em;
+font-weight: bold;
+}
+
+footer {
+background-color: #0c2704;
+color: white;
+padding: 40px 20px;
+}
+
+.footer-bottom {
+text-align: center;
+padding-top: 20px;
+border-top: 1px solid #555;
+margin-top: 20px;
+font-size: 0.9em;
+color: #b8b8b8;
+}
+
+.footer-container {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+}
+
+.footer-section {
+flex: 1 1 200px;
+margin: 10px;
+}
+
+.footer-section h3 {
+margin-bottom: 15px;
+}
+
+.footer-section ul {
+list-style: none;
+padding: 0;
+}
+
+.footer-section ul li {
+margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+color: #ccc;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+color: white;
+}
