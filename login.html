@@ -8,57 +8,100 @@
 </head>
 <body>
     <header>
-    <div class="logo">Sustentare</div>
+        <div class="logo">Sustentare</div>
     </header>
     <div class="form-container">
         <h2>Login</h2>
 
-        <form action="#" method="post"> <!-- o # é o endereço que o dado sera enviado-->
+        <form onsubmit="login(); return false;">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
-
+        
             <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha" required>
-
+        
             <button type="submit">Login</button>
-
-
-
-
         </form>
-
-
+        <p id="status"></p>
+        <button onclick="logout()">Sair</button>
     </div>
 
     <footer>
         <div class="footer-container">
-          <div class="footer-section">
-            <h3>Sobre Nós</h3>
-            <p>Somos uma empresa dedicada a fornecer as melhores soluções digitais para você.</p>
-          </div>
-          <div class="footer-section">
-            <h3>Links Rápidos</h3>
-            <ul>
-              <li><a href="#">Início</a></li>
-              <li><a href="#">Serviços</a></li>
-              <li><a href="#">Contato</a></li>
-              <li><a href="#">Política de Privacidade</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Siga-nos</h3>
-            <ul>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Twitter</a></li>
-            </ul>
-          </div>
+            <div class="footer-section">
+                <h3>Sobre Nós</h3>
+                <p>Somos uma empresa dedicada a fornecer as melhores soluções digitais para você.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Siga-nos</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
         </div>
         <div class="footer-bottom">
-          &copy; 2025 Sustentare. Todos os direitos reservados.
+            &copy; 2025 Sustentare. Todos os direitos reservados.
         </div>
-      </footer>
-   
-    
+    </footer>
+
+    <script>
+      function login() {
+          const email = document.getElementById("email").value;
+          const senha = document.getElementById("senha").value;
+  
+          const usuarioSalvo = localStorage.getItem(email);
+  
+          if (usuarioSalvo) {
+              const usuario = JSON.parse(usuarioSalvo);
+  
+              if (usuario.senha === senha) {
+                  sessionStorage.setItem("loggedUser", email);
+                  document.getElementById("status").innerText = `Bem-vindo, ${email}!`;
+  
+                  const logoutButton = document.getElementById("logoutButton");
+                  if (logoutButton) logoutButton.style.display = "inline";
+  
+                  window.location.href = "index.html"; // redireciona para a página inicial
+              } else {
+                  alert("Senha incorreta.");
+                  document.getElementById("status").innerText = "";
+              }
+          } else {
+              alert("Email não encontrado.");
+              document.getElementById("status").innerText = "";
+          }
+      }
+  
+      function logout() {
+          sessionStorage.removeItem("loggedUser");
+          document.getElementById("status").innerText = "Deslogado.";
+  
+          const logoutButton = document.getElementById("logoutButton");
+          if (logoutButton) logoutButton.style.display = "none";
+      }
+  
+      window.onload = function () {
+          const loggedUser = sessionStorage.getItem("loggedUser");
+          if (loggedUser) {
+              document.getElementById("status").innerText = `Bem-vindo de volta, ${loggedUser}!`;
+  
+              const logoutButton = document.getElementById("logoutButton");
+              if (logoutButton) logoutButton.style.display = "inline";
+          } else {
+              document.getElementById("status").innerText = "Você não está logado.";
+          }
+      };
+  </script>
 </body>
 </html>

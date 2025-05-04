@@ -15,7 +15,7 @@
 
       
       
-      <form action="#" method="post">
+      <form onsubmit="registrarConta(); return false;">
         <!-- o # é o endereço que o dado sera enviado-->
 
         <label for="nome">Nome Completo</label>
@@ -107,5 +107,55 @@
         &copy; 2025 Sustentare. Todos os direitos reservados.
       </div>
     </footer>
+
+
+
+    <script>
+      function registrarConta() {
+        const email = document.getElementById("email").value;
+
+        // Verifica se já existe um usuário com esse e-mail
+        if (localStorage.getItem(email)) {
+          alert("Este email já está cadastrado!");
+          return;
+        }
+
+        const usuario = {
+          nome: document.getElementById("nome").value,
+          email: email,
+          senha: document.getElementById("senha").value,
+          endereco: {
+            rua: document.getElementById("rua").value,
+            numero: document.getElementById("numero").value,
+            bairro: document.getElementById("bairro").value,
+            cidade: document.getElementById("cidade").value,
+            estado: document.getElementById("estado").value
+          }
+        };
+
+        // Salva no localStorage como JSON
+        localStorage.setItem(email, JSON.stringify(usuario));
+
+        alert("Conta cadastrada com sucesso!");
+        window.location.href = "login.html"; // Redireciona para login
+
+        // Debug: Exibe os dados no console
+        console.log("Dados armazenados no localStorage:");
+        console.log(localStorage);
+      }
+
+      // Função para exibir dados armazenados (opcional)
+      function exibirDados() {
+        const dadosUsuarios = Object.keys(localStorage).map(key => {
+          return JSON.parse(localStorage.getItem(key));
+        });
+        
+        console.log("Usuários cadastrados:", dadosUsuarios);
+      }
+
+      // Chama a função de exibição de dados ao carregar a página
+      window.onload = exibirDados;
+    </script>
+    
   </body>
 </html>

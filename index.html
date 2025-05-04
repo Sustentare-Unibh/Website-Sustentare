@@ -10,6 +10,31 @@
 <body>
 
   
+  <script>
+    // Função para verificar se o usuário está logado
+    window.onload = function() {
+      const loggedUser = sessionStorage.getItem("loggedUser");
+
+      // Se o usuário estiver logado, ocultamos o botão "Entrar" e mostramos uma saudação ou o botão "Sair"
+      if (loggedUser) {
+        document.getElementById("loginButton").style.display = "none"; // Esconde o botão Entrar
+        document.getElementById("logoutButton").style.display = "inline"; // Exibe o botão Sair
+        document.getElementById("welcomeMessage").innerText = `Bem-vindo, ${loggedUser}!`; // Exibe mensagem de boas-vindas
+      } else {
+        document.getElementById("loginButton").style.display = "inline"; // Exibe o botão Entrar
+        document.getElementById("logoutButton").style.display = "none"; // Esconde o botão Sair
+      }
+    };
+
+    // Função de logout
+    function logout() {
+      sessionStorage.removeItem("loggedUser");
+      window.location.reload(); // Recarrega a página para aplicar as mudanças
+    }
+  </script>
+</head>
+<body>
+
   <header>
     <div class="logo">Sustentare</div>
     <nav>
@@ -22,8 +47,10 @@
       </ul>
     </nav>
     <div class="container">
-    <button class="button">Entrar</button>
-  </div>
+      <!-- Se o usuário não estiver logado, mostramos o botão "Entrar", senão mostramos o "Sair" -->
+      <a href="./login.html" id="loginButton" class="button">Entrar</a>
+      <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
+    </div>
   </header>
 
   <main>
