@@ -71,6 +71,17 @@ nav ul li a:hover {
   font-weight: bold;
   margin-top: 20px;
   text-align: center;
+} 
+
+.sobre{
+  padding: 20px;
+  margin: 10px;
+  line-height: 30px;
+  text-align: center
+
+
+
+
 }
 .container {
   display: flex;
