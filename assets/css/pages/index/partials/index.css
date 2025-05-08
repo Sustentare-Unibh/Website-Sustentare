@@ -8,25 +8,34 @@ body {
 
 
 header {
+  position: relative;    /* para que o nav absoluto seja relativo ao header */
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #39b339;
   color: rgb(228, 228, 228);
   padding: 15px 30px;
+  gap:5px;
 }
 
 .logo {
+  flex:1;
   font-size: 1.5em;
   font-weight: bold;
 }
 
+nav{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 nav ul li {
