@@ -5,11 +5,9 @@ const app = express();
 // Usar body-parser para ler o corpo das requisições JSON
 app.use(bodyParser.json());
 
-// Rota para o login (aceitando POST)
 app.post('/api/login', (req, res) => {
     const { email, senha } = req.body;
 
-    // Simulação simples de validação
     if (email === "teste@dominio.com" && senha === "senha123") {
         res.json({ sucesso: true, mensagem: 'Login realizado com sucesso!' });
     } else {
