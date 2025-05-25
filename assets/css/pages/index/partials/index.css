@@ -82,6 +82,11 @@ nav ul li a:hover {
   text-align: center;
 } 
 
+.map-wrapper {
+  text-align: center;
+  margin: 20px 0;
+}
+
 .sobre{
   padding: 20px;
   margin: 10px;
