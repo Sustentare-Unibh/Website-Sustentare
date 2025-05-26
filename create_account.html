@@ -8,8 +8,30 @@
   </head>
   <body>
     <header>
-      <div class="logo">Sustentare</div>
+        <div class="logo">Sustentare</div>
+    <nav>
+      <ul>
+        <li><a href="/index.html">Início</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Serviços</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="./map.html">Mapa</a></li>
+      </ul>
+    </nav>
+
+    
+    <div class="container">
+      <!-- Se o usuário não estiver logado, mostramos o botão "Entrar", senão mostramos o "Sair" -->
+      <a href="./create_account.html" id="CadastroButton" class="button">Cadastrar</a>
+      <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
+    </div>
+
+    <div class="container">
+      <a href="./login.html" id="loginButton" class="button">Login</a>
+      <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
+    </div>
     </header>
+    <main>
     <div class="form-container">
       <h2>Cadastro</h2>
 
@@ -75,7 +97,7 @@
         <button type="submit">Cadastrar</button>
       </form>
     </div>
-
+</main>
     <footer>
       <div class="footer-container">
         <div class="footer-section">
