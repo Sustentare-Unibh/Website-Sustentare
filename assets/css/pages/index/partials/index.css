@@ -127,8 +127,13 @@ main {
   flex: 1;
 }
 
+main ul li{
+  text-align: left;
+  font-size:65%;
+}
+
 footer {
-  background-color: #1a1a1a;
+  background-color:#1b5e20;
   color: #ffffff;
   padding: 50px 20px;
 }
