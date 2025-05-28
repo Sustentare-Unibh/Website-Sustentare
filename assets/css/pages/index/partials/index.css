@@ -128,8 +128,14 @@ main {
 }
 
 main ul li{
+  
   text-align: left;
   font-size:65%;
+  list-style-position:inherit;
+  margin-bottom: 10px;
+  margin-left: 7%;
+
+  
 }
 
 footer {
