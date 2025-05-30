@@ -4,11 +4,14 @@ body {
   flex-direction: column;
   font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #f4f4f9;
+  background-color: rgb(241, 237, 237);
 }
 
 main{
-  flex:1;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
@@ -16,16 +19,33 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #39b339;
+  background-color: #2e7d32;
   color: rgb(228, 228, 228);
   padding: 15px 30px;
   gap:5px;
+  flex-wrap: wrap ;
 }
 
 .logo {
+  font-size: 2em;
+  font-weight: 800;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(90deg, #ffffff, #d4ffcc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent; 
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   flex:1;
-  font-size: 1.5em;
-  font-weight: bold;
+}
+
+.logo::before {
+  content: "🌿";
+  font-size: 1.2em;
 }
 
 nav{
@@ -58,29 +78,58 @@ nav ul li a:hover {
 
 
 .form-container{
-  padding: 20px;  
-  border-radius: 10px;    
-  width: 50px;
+  width: 100%;
+  max-width: 350px;
+  padding: 30px;  
+  border-radius: 10px;
+  margin: 50px auto;
+  background-color:  #ffffff; 
+}
+
+.form-description {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+  color: #666;
+}
+
+form select:invalid {
+  color: #000000; /* cor para o "Selecione" */
 }
 
 form label {
-
   display: block;
   margin-top: 10x;
 }
 
+.form-group {
+  margin-bottom: 15px;
+}
+
 form input{
   width: 200x;
-  margin-top: 5px;
+  margin-top: 15px;
   box-sizing: border-box;
-  padding: 2px;
-
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
 
 }
 
 .button {
-  background-color: white;
-  color: #39b339;
+  background-color: rgb(241, 237, 237);
+  color: #2e7d32;
   padding: 12px 20px;
   border: none;
   border-radius: 5px;
@@ -91,12 +140,12 @@ form input{
 
 .button:hover {
   background-color: #d1ffdd;
-  color: #288028;
+  color:#2e7d32;
 }
 
 
 footer {
-background-color: #0c2704;
+background-color:#2e7d32;
 color: white;
 padding: 40px 20px;
 }
@@ -150,5 +199,6 @@ h2{
   padding: 20px;
   font-size: 30px;
   font-weight: bold;
-
+  text-align: center;
+  color: #2e7d32;
 }

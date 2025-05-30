@@ -80,56 +80,6 @@
     </div>
   </footer>
 
-  <script>
-    function login() {
-      const email = document.getElementById("email").value
-      const senha = document.getElementById("senha").value
-
-      const usuarioSalvo = localStorage.getItem(email)
-
-      if (usuarioSalvo) {
-        const usuario = JSON.parse(usuarioSalvo)
-
-        if (usuario.senha === senha) {
-          sessionStorage.setItem("loggedUser", email)
-          document.getElementById("status").innerText = `Bem-vindo, ${email}!`
-
-          const logoutButton = document.getElementById("logoutButton")
-          if (logoutButton) logoutButton.style.display = "inline"
-
-          window.location.href = "index.html" // redireciona para a página inicial
-        } else {
-          alert("Senha incorreta.")
-          document.getElementById("status").innerText = ""
-        }
-      } else {
-        alert("Email não encontrado.")
-        document.getElementById("status").innerText = ""
-      }
-    }
-
-    function logout() {
-      sessionStorage.removeItem("loggedUser")
-      document.getElementById("status").innerText = "Deslogado."
-
-      const logoutButton = document.getElementById("logoutButton")
-      if (logoutButton) logoutButton.style.display = "none"
-    }
-
-    window.onload = function () {
-      const loggedUser = sessionStorage.getItem("loggedUser")
-      if (loggedUser) {
-        document.getElementById(
-          "status"
-        ).innerText = `Bem-vindo de volta, ${loggedUser}!`
-
-        const logoutButton = document.getElementById("logoutButton")
-        if (logoutButton) logoutButton.style.display = "inline"
-      } else {
-        document.getElementById("status").innerText = "Você não está logado."
-      }
-    }
-  </script>
 
 
 </body>

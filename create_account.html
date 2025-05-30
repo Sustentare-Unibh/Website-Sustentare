@@ -5,65 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
     <link rel="stylesheet" href="./assets/css/pages/create_account/index.css" />
+     <script src="scripts/auth.js" defer></script>
   </head>
   <body>
-    <header>
-        <div class="logo">Sustentare</div>
-    <nav>
-      <ul>
-        <li><a href="/index.html">Início</a></li>
-        <li><a href="#">Sobre</a></li>
-        <li><a href="#">Serviços</a></li>
-        <li><a href="#">Contato</a></li>
-        <li><a href="./map.html">Mapa</a></li>
-      </ul>
-    </nav>
-
-    
-    <div class="container">
-      <!-- Se o usuário não estiver logado, mostramos o botão "Entrar", senão mostramos o "Sair" -->
+    <header class="main-header">
+  <div class="top-header">
+    <div class="logo">Sustentare</div>
+    <div class="auth-buttons">
       <a href="./create_account.html" id="CadastroButton" class="button">Cadastrar</a>
-      <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
-    </div>
-
-    <div class="container">
       <a href="./login.html" id="loginButton" class="button">Login</a>
       <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
     </div>
-    </header>
+  </div>
+
+  <nav class="main-nav">
+    <ul>
+      <li><a href="/index.html">Início</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Serviços</a></li>
+      <li><a href="#">Contato</a></li>
+      <li><a href="./map.html">Mapa</a></li>
+    </ul>
+  </nav>
+</header>
+
+
     <main>
-    <div class="form-container">
-      <h2>Cadastro</h2>
-
-      
-      
-      <form onsubmit="registrarConta(); return false;">
-        <!-- o # é o endereço que o dado sera enviado-->
-
+  <div class="form-container">
+    <h2>Cadastro</h2>
+    <p class="form-description">Preencha os campos abaixo para criar sua conta:</p>
+    <br />
+    <form onsubmit="registrarConta(); return false;">
+      <!-- o # é o endereço que o dado sera enviado-->
+      <div class="form-group">
         <label for="nome">Nome Completo</label>
         <input type="text" id="nome" name="nome" required />
+      </div>
 
+      <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required />
+      </div>
 
+      <div class="form-group">
         <label for="senha">Senha</label>
         <input type="password" id="senha" name="senha" required />
+      </div>
 
+      <div class="form-group">
         <label for="rua">Rua</label>
         <input type="text" id="rua" name="rua" required />
+      </div>
 
+      <div class="form-group">
         <label for="numero">Número</label>
         <input type="text" id="numero" name="numero" required />
+      </div>
 
+      <div class="form-group">
         <label for="bairro">Bairro</label>
         <input type="text" id="bairro" name="bairro" required />
+      </div>
 
+      <div class="form-group">
         <label for="cidade">Cidade</label>
         <input type="text" id="cidade" name="cidade" required />
+      </div>
 
+      <div class="form-group">
         <label for="estado">Estado</label>
         <select id="estado" name="estado" required>
-          <option value="">Selecione</option>
+          <option value="" disabled selected hidden>Selecione</option>
           <option value="AC">AC</option>
           <option value="AL">AL</option>
           <option value="AP">AP</option>
@@ -92,11 +104,11 @@
           <option value="SE">SE</option>
           <option value="TO">TO</option>
         </select>
-        <br /><br />
+      </div>
 
-        <button type="submit">Cadastrar</button>
-      </form>
-    </div>
+      <button type="submit" class="button">Cadastrar</button>
+    </form>
+  </div>
 </main>
     <footer>
       <div class="footer-container">
@@ -128,56 +140,6 @@
       <div class="footer-bottom">
         &copy; 2025 Sustentare. Todos os direitos reservados.
       </div>
-    </footer>
-
-
-
-    <script>
-      function registrarConta() {
-        const email = document.getElementById("email").value;
-
-        // Verifica se já existe um usuário com esse e-mail
-        if (localStorage.getItem(email)) {
-          alert("Este email já está cadastrado!");
-          return;
-        }
-
-        const usuario = {
-          nome: document.getElementById("nome").value,
-          email: email,
-          senha: document.getElementById("senha").value,
-          endereco: {
-            rua: document.getElementById("rua").value,
-            numero: document.getElementById("numero").value,
-            bairro: document.getElementById("bairro").value,
-            cidade: document.getElementById("cidade").value,
-            estado: document.getElementById("estado").value
-          }
-        };
-
-        // Salva no localStorage como JSON
-        localStorage.setItem(email, JSON.stringify(usuario));
-
-        alert("Conta cadastrada com sucesso!");
-        window.location.href = "login.html"; // Redireciona para login
-
-        // Debug: Exibe os dados no console
-        console.log("Dados armazenados no localStorage:");
-        console.log(localStorage);
-      }
-
-      // Função para exibir dados armazenados (opcional)
-      function exibirDados() {
-        const dadosUsuarios = Object.keys(localStorage).map(key => {
-          return JSON.parse(localStorage.getItem(key));
-        });
-        
-        console.log("Usuários cadastrados:", dadosUsuarios);
-      }
-
-      // Chama a função de exibição de dados ao carregar a página
-      window.onload = exibirDados;
-    </script>
-    
+    </footer>    
   </body>
 </html>
