@@ -1,11 +1,13 @@
 
- {
+
+/* Reset geral */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
+/* Estilo base do corpo */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f6f8;
@@ -13,7 +15,7 @@ body {
   line-height: 1.6;
 }
 
-
+/* Cabeçalho */
 header {
   background-color: #2e7d32;
   color: #fff;
@@ -49,6 +51,7 @@ nav ul li a:hover {
   margin-left: 1rem;
 }
 
+/* Botões */
 .button {
   background-color: #66bb6a;
   color: white;
@@ -122,13 +125,13 @@ form button:hover,
   background-color: #1b5e20;
 }
 
- {
+
+#status {
   margin-top: 1rem;
   text-align: center;
   font-weight: bold;
   color: #2e7d32;
 }
-
 
 footer {
   background-color: #1b5e20;
@@ -179,7 +182,7 @@ footer {
   color: #a5d6a7;
 }
 
-/* Responsividade */
+
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
