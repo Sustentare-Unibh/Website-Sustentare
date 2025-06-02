@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="./assets/css/pages/login/index.css" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">Sustentare</div>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Início</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Serviços</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="./map.html">Mapa</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <!-- Se o usuário não estiver logado, mostramos o botão "Entrar", senão mostramos o "Sair" -->
+      <a href="./create_account.html" id="CadastroButton" class="button">Cadastrar</a>
+      <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
+    </div>
+
+    <div class="container">
+      <a href="./login.html" id="loginButton" class="button">Login</a>
+      <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
+    </div>
+  </header>
+  <main>
+    <div class="form-container">
+      <h2>Login</h2>
+
+      <form onsubmit="login(); return false;">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required />
+
+        <button type="submit">Login</button>
+      </form>
+      <p id="status"></p>
+      <button onclick="logout()">Sair</button>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Sobre Nós</h3>
+        <p>
+          Somos uma empresa dedicada a fornecer as melhores soluções digitais
+          para você.
+        </p>
+      </div>
+   
+      <div class="footer-section">
+        <h3>Siga-nos</h3>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Sustentare. Todos os direitos reservados.
+    </div>
+  </footer>
+
+
+
+</body>
+
+</html>
