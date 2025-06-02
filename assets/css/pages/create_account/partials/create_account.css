@@ -143,6 +143,24 @@ form input{
   color:#2e7d32;
 }
 
+form button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #1b5e20;
+}
+
 
 footer {
 background-color:#2e7d32;

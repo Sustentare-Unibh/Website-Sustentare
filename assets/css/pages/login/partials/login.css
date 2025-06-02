@@ -8,7 +8,7 @@
 /* Estilo base do corpo */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f6f8;
+  background-color: rgb(241, 237, 237);
   color: #333;
   line-height: 1.6;
 }
@@ -16,7 +16,7 @@ body {
 /* Cabeçalho */
 header {
   background-color: #2e7d32;
-  color: #fff;
+  color: rgb(228, 228, 228);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -58,8 +58,8 @@ nav ul li a:hover {
 
 /* Botões */
 .button {
-  background-color: #66bb6a;
-  color: white;
+  background-color: rgb(241, 237, 237);
+  color: #2e7d32;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -70,7 +70,8 @@ nav ul li a:hover {
 }
 
 .button:hover {
-  background-color: #43a047;
+  background-color: #d1ffdd;
+  color:#2e7d32;
   transform: translateY(-2px);
 }
 
