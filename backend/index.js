@@ -1,26 +1,50 @@
 const express = require('express');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+const path = require('path');
 const app = express();
+const PORT = 3000;
 
-// Usar body-parser para ler o corpo das requisições JSON
+// Middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public')); // Serve arquivos HTML, CSS etc.
 
-app.post('/api/login', (req, res) => {
-    const { email, senha } = req.body;
+// Conexão com banco de dados
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'sua_senha',
+  database: 'cadastrodb'
+});
 
-    if (email === "teste@dominio.com" && senha === "senha123") {
-        res.json({ sucesso: true, mensagem: 'Login realizado com sucesso!' });
-    } else {
-        res.json({ sucesso: false, mensagem: 'Email ou senha inválidos' });
+db.connect(err => {
+  if (err) throw err;
+  console.log('Conectado ao banco MySQL!');
+});
+
+// Rota para registrar conta
+app.post('/registrar', (req, res) => {
+  const {
+    nome, email, senha, rua,
+    numero, bairro, cidade, estado
+  } = req.body;
+
+  const sql = `
+    INSERT INTO usuarios 
+    (nome, email, senha, rua, numero, bairro, cidade, estado) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(sql, [nome, email, senha, rua, numero, bairro, cidade, estado], (err, result) => {
+    if (err) {
+      console.error('Erro ao inserir:', err);
+      return res.status(500).send('Erro ao registrar');
     }
+    res.send('Cadastro realizado com sucesso!');
+  });
 });
 
-// Definir uma rota para a raiz (GET /)
-app.get('/', (req, res) => {
-    res.send('Servidor Express funcionando!');
-});
-
-// Iniciar o servidor na porta 3000
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
