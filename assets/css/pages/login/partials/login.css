@@ -11,18 +11,22 @@ body {
   background-color: rgb(241, 237, 237);
   color: #333;
   line-height: 1.6;
+  padding: 20px;
 }
 
 /* Cabeçalho */
 header {
-  background-color: #2e7d32;
-  color: rgb(228, 228, 228);
-  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #2e7d32;
+  color: #ffffff;
+  padding: 20px 30px;
+  border-radius: var(--radius-md, 10px);
+  margin-bottom: 30px;
+  margin: 20px;
+  width: calc(100% - 40px);
   flex-wrap: wrap;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -152,10 +156,16 @@ form button:hover {
 
 /* Footer */
 footer {
-  background-color: #1b5e20;
-  color: white;
-  padding: 2rem;
-  margin-top: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2e7d32;
+  color: #ffffff;
+  padding: 20px 30px;
+  border-radius: var(--radius-md, 10px);
+  margin: auto 10px;
+  width: calc(100% - 20px);
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .footer-container {
@@ -175,6 +185,11 @@ footer {
   border-bottom: 1px solid #4caf50;
   padding-bottom: 0.5rem;
   font-size: 1.2rem;
+}
+
+.footer-section p {
+  margin-bottom: 1rem;
+  color: #c8e6c9;
 }
 
 .footer-section ul {

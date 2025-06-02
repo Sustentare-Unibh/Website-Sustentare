@@ -15,15 +15,22 @@ main{
 }
 
 header {
-  position: relative;    /* para que o nav absoluto seja relativo ao header */
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #2e7d32;
-  color: rgb(228, 228, 228);
-  padding: 15px 30px;
-  gap:5px;
-  flex-wrap: wrap ;
+  color: #ffffff;
+  padding: 20px 30px;
+  border-radius: var(--radius-md, 10px);
+  margin-bottom: 30px;
+  margin: 20px;
+  width: calc(100% - 40px);
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.8em;
+  font-weight: bold;
 }
 
 .logo {
@@ -173,10 +180,16 @@ form button:hover {
 }
 
 footer {
-  background-color: #1b5e20;
-  color: white;
-  padding: 2rem;
-  margin-top: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2e7d32;
+  color: #ffffff;
+  padding: 20px 30px;
+  border-radius: var(--radius-md, 10px);
+  margin: auto 10px;
+  width: calc(100% - 20px);
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .footer-container {
@@ -196,6 +209,11 @@ footer {
   border-bottom: 1px solid #4caf50;
   padding-bottom: 0.5rem;
   font-size: 1.2rem;
+}
+
+.footer-section p {
+  margin-bottom: 1rem;
+  color: #c8e6c9;
 }
 
 .footer-section ul {
