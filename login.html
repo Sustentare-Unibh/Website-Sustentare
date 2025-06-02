@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
+  <title>Login | Sustentare</title>
   <link rel="stylesheet" href="/Website-Sustentare/assets/css/pages/login/index.css" />
 </head>
-
 
 <body>
   <header>
     <div class="logo">Sustentare</div>
-    <nav>
+    <nav aria-label="Menu principal">
       <ul>
         <li><a href="./index.html">Início</a></li>
         <li><a href="#">Sobre</a></li>
@@ -22,33 +20,33 @@
       </ul>
     </nav>
     <div class="container">
-      <!-- Se o usuário não estiver logado, mostramos o botão "Entrar", senão mostramos o "Sair" -->
-      <a href="./create_account.html" id="CadastroButton" class="button">Cadastrar</a>
-      <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
-    </div>
-
-    <div class="container">
-      <a href="./login.html" id="loginButton" class="button">Login</a>
+      <a href="./create_account.html" class="button">Cadastrar</a>
+      <a href="./login.html" class="button">Login</a>
       <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
     </div>
   </header>
+
   <main>
     <div class="form-container">
       <h2>Login</h2>
-
-      <form onsubmit="login(); return false;">
+      <form onsubmit="login(); return false;" autocomplete="on">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" required autofocus />
 
         <label for="senha">Senha</label>
         <input type="password" id="senha" name="senha" required />
 
-        <button type="submit">Login</button>
+        <button type="submit">Entrar</button>
       </form>
+
       <p id="status"></p>
-      <button onclick="logout()">Sair</button>
+
+      <p style="text-align: center; margin-top: 1rem;">
+        Ainda não tem conta? <a href="./create_account.html">Crie uma agora</a>
+      </p>
     </div>
   </main>
+
   <footer>
     <div class="footer-container">
       <div class="footer-section">
@@ -81,9 +79,29 @@
     </div>
   </footer>
 
+  <script>
+    // Exemplo básico de login fictício
+    function login() {
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+      const status = document.getElementById('status');
 
+      // Simula login (substitua por autenticação real)
+      if (email === 'teste@sustentare.com' && senha === '123456') {
+        status.textContent = 'Login bem-sucedido!';
+        status.style.color = 'green';
+        document.getElementById('logoutButton').style.display = 'inline-block';
+      } else {
+        status.textContent = 'Email ou senha incorretos.';
+        status.style.color = 'red';
+      }
+    }
 
+    function logout() {
+      document.getElementById('logoutButton').style.display = 'none';
+      document.getElementById('status').textContent = 'Você saiu com sucesso.';
+      document.getElementById('status').style.color = 'blue';
+    }
+  </script>
 </body>
-
 </html>
-
