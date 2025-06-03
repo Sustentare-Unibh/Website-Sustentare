@@ -4,16 +4,13 @@ $username = "mysqlsustentareserver";
 $password = "Azure123$";
 $dbname = "cadastro-sustentare";
 
-// Criar conexão
 $conn = new mysqli($servername, $username, $password, $dbname, 3306, NULL, MYSQLI_CLIENT_SSL);
 
-// Verificar conexão
 if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
 echo "Conexão bem-sucedida ao Azure MySQL!";
 
-// Exemplo de consulta
 $sql = "SELECT * FROM produtos";
 $result = $conn->query($sql);
 
