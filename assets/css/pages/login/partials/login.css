@@ -23,17 +23,16 @@ header {
   color: #ffffff;
   padding: 20px 30px;
   border-radius: var(--radius-md, 10px);
-  margin-bottom: 30px;
-  margin: 20px;
-  width: calc(100% - 40px);
   flex-wrap: wrap;
-}
+} 
 
 .logo {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center auto;
   letter-spacing: 1px;
 }
+
 
 nav ul {
   display: flex;
@@ -162,9 +161,6 @@ footer {
   color: #ffffff;
   padding: 20px 30px;
   border-radius: var(--radius-md, 10px);
-  margin: auto 10px;
-  width: calc(100% - 20px);
-  margin-bottom: 30px;
   flex-wrap: wrap;
 }
 
