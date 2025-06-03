@@ -56,7 +56,6 @@ $conn->close();
   </nav>
 </header>
 
-
     <main>
   <div class="form-container">
     <h2>Cadastro</h2>
@@ -183,7 +182,7 @@ $conn->close();
       };
   
       fetch("/registrar", {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
