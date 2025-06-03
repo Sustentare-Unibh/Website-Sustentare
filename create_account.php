@@ -59,7 +59,6 @@ $conn->close();
 
     <main>
   <div class="form-container">
-    <form action="cadastro.php" method="POST">
     <h2>Cadastro</h2>
     <p class="form-description">Preencha os campos abaixo para criar sua conta:</p>
     <br />
@@ -184,7 +183,7 @@ $conn->close();
       };
   
       fetch("/registrar", {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json"
         },
