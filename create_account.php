@@ -183,7 +183,7 @@ $conn->close();
       };
   
       fetch("/registrar", {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
