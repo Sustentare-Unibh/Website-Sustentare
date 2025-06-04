@@ -105,6 +105,11 @@ nav ul li a:hover {
   transition: all 0.3s ease;
 }
 
+.button a{
+  color: #2e7d32;
+  text-decoration: none;
+}
+
 .button:hover,
 .location-search button:hover,
 .report-section button:hover {
