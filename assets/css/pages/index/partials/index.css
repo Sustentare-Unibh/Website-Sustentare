@@ -50,6 +50,8 @@ nav ul {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  text-align: center;
+  justify-content: center; 
 }
 
 nav ul li a {
@@ -57,6 +59,7 @@ nav ul li a {
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
+  text-align: center;
 }
 
 nav ul li a:hover {
