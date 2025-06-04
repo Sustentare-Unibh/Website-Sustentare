@@ -87,6 +87,19 @@ function searchLocation() {
 
 // Adiciona marcador ao clicar no mapa
 map.on("click", function (e) {
-  var marker = L.marker(e.latlng).addTo(map)
-  marker.bindPopup("Marcador em: " + e.latlng.toString()).openPopup()
-})
+  // Captura as coordenadas clicadas
+  const latlng = e.latlng;
+
+  // Adiciona marcador no mapa
+  var marker = L.marker(latlng).addTo(map);
+  marker.bindPopup("Você selecionou: " + latlng.toString()).openPopup();
+
+  // Preenche o campo de localização com as coordenadas
+  const locationInput = document.getElementById("reportLocation");
+  locationInput.value = `Latitude: ${latlng.lat.toFixed(5)}, Longitude: ${latlng.lng.toFixed(5)}`;
+
+  // Rola até o formulário de reporte
+  document.getElementById("report-form").scrollIntoView({ behavior: "smooth" });
+
+});
+
