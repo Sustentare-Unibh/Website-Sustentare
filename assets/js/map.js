@@ -84,8 +84,18 @@ function searchLocation() {
       alert("Erro ao buscar localização.")
     })
 }
+let currentMarker = null; // Essa variável deve estar no escopo global
 
-// Adiciona marcador ao clicar no mapa
+function limparMarcador() {
+  if (currentMarker) {
+    map.removeLayer(currentMarker);
+    currentMarker = null;
+  }
+
+  // Limpa o campo de localização também, se quiser
+  const locationInput = document.getElementById("reportLocation");
+  locationInput.value = "";
+}
 map.on("click", function (e) {
   // Captura as coordenadas clicadas
   const latlng = e.latlng;
@@ -94,12 +104,13 @@ map.on("click", function (e) {
   var marker = L.marker(latlng).addTo(map);
   marker.bindPopup("Você selecionou: " + latlng.toString()).openPopup();
 
+  // Rola até o formulário de reporte
+  document.getElementById("report-form").scrollIntoView({ behavior: "smooth" });
+
   // Preenche o campo de localização com as coordenadas
   const locationInput = document.getElementById("reportLocation");
   locationInput.value = `Latitude: ${latlng.lat.toFixed(5)}, Longitude: ${latlng.lng.toFixed(5)}`;
 
-  // Rola até o formulário de reporte
-  document.getElementById("report-form").scrollIntoView({ behavior: "smooth" });
-
+  // Dá foco no primeiro campo do formulário para incentivar o preenchimento
+  locationInput.focus();
 });
-
