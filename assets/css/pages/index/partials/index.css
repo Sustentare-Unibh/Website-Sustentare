@@ -85,7 +85,7 @@ nav ul li a:hover {
   color: #fff;
   padding: 12px 24px;
   text-decoration: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm, 6px);
   transition: background-color 0.3s, transform 0.2s;
   font-weight: bold;
   margin-top: 20px;
