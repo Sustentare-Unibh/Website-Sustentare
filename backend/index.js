@@ -1,12 +1,21 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Servir arquivos estáticos do frontend
+app.use(express.static(path.join(__dirname, '../public')));
+
 const usuarios = []; // Armazena usuários em memória
+
+// Rota de teste
+app.get('/api', (req, res) => {
+  res.send('API Sustentare rodando!');
+});
 
 // Cadastro
 app.post('/registrar', (req, res) => {
@@ -14,7 +23,6 @@ app.post('/registrar', (req, res) => {
   if (!nome || !email || !senha) {
     return res.status(400).send('Preencha todos os campos obrigatórios.');
   }
-  // Verifica se já existe usuário com o mesmo email
   if (usuarios.find(u => u.email === email)) {
     return res.status(409).send('Email já cadastrado.');
   }

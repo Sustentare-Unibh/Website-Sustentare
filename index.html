@@ -31,6 +31,29 @@
       sessionStorage.removeItem("loggedUser");
       window.location.reload(); // Recarrega a página para aplicar as mudanças
     }
+
+    function registrarUsuario(nome, email, senha) {
+      fetch("http://localhost:8080/registrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nome, email, senha }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Usuário registrado com sucesso!");
+            window.location.href = "./login.html"; // Redireciona para a página de login após o registro
+          } else {
+            alert("Erro ao registrar usuário: " + data.message);
+          }
+        })
+        .catch((error) => {
+          console.error("Erro:", error);
+          alert("Ocorreu um erro ao registrar o usuário. Tente novamente mais tarde.");
+        });
+    }
   </script>
 </head>
 <body>

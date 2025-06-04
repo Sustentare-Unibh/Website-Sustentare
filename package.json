@@ -1,21 +1,11 @@
 {
   "name": "website-sustentare",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "backend/index.js",
   "scripts": {
+    "start": "node backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Sustentare-Unibh/Website-Sustentare.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Sustentare-Unibh/Website-Sustentare/issues"
-  },
-  "homepage": "https://github.com/Sustentare-Unibh/Website-Sustentare#readme",
-  "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",

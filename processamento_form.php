@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$usuario = 'root';
+$usuario = 'mysqlsustentareserver';
 $senha = '';
 $banco = 'cadastro-sustentare';
 
