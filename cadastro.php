@@ -1,26 +1,29 @@
 <?php
-$servername = "mysqlsustentareserver.mysql.database.azure.com";
-$username = "mysqlsustentareserver";
-$password = "Azure123$";
-$dbname = "cadastro-sustentare";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $rua = $_POST['rua'];
+    $numero = $_POST['numero'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
 
-$conn = new mysqli($servername, $username, $password, $dbname, 3306, NULL, MYSQLI_CLIENT_SSL);
+    $conn = new mysqli("localhost", "usuario", "senha", "nome_do_banco");
 
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
-}
-echo "Conexão bem-sucedida ao Azure MySQL!";
-
-$sql = "SELECT * FROM produtos";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Nome: " . $row["nome"]. "<br>";
+    if ($conn->connect_error) {
+        die("Erro de conexão: " . $conn->connect_error);
     }
-} else {
-    echo "0 resultados";
-}
 
-$conn->close();
+    $sql = "INSERT INTO usuarios (nome, email, senha, rua, numero, bairro, cidade, estado)
+            VALUES ('$nome', '$email', '$senha', '$rua', '$numero', '$bairro', '$cidade', '$estado')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Cadastro realizado com sucesso!";
+    } else {
+        echo "Erro ao cadastrar: " . $conn->error;
+    }
+
+    $conn->close();
+}
 ?>
