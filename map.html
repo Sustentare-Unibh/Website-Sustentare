@@ -7,8 +7,6 @@
 
     <!-- Estilos do Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="./assets/css/pages/map/index.css" />
   </head>
   <body>
@@ -20,10 +18,10 @@
           <li><a href="./index.html">Sobre</a></li>
           <li><a href="./index.html">Serviços</a></li>
           <li><a href="./index.html">Contato</a></li>
-          <li><a href="#">Mapa </a></li>
+          <li><a href="#">Mapa</a></li>
         </ul>
       </nav>
-      <br>
+      <br />
       <button class="button">
         <a href="./create_account.html">Entrar</a>
       </button>
@@ -44,6 +42,7 @@
     <!-- Container do mapa -->
     <div id="map"></div>
 
+    <!-- Formulário de reporte -->
     <section id="report-form" class="report-section">
       <h2>Reporte um Problema 🚧</h2>
       <p>
@@ -51,30 +50,30 @@
         riscos.
       </p>
 
-      <form id="formReporte">
+      <form id="formReporte" action="https://script.google.com/macros/s/SEU-LINK-DO-SCRIPT/exec" method="POST">
         <label for="reportLocation">Localização:</label>
         <input
           type="text"
           id="reportLocation"
-          name="reportLocation"
+          name="Localizacao"
           placeholder="Digite a cidade ou ponto de referência"
           required
         />
 
         <label for="reportType">Tipo de problema:</label>
-        <select id="reportType" name="reportType" required>
+        <select id="reportType" name="Tipo" required>
           <option value="">Selecione</option>
-          <option value="alagamento">Alagamento</option>
-          <option value="deslizamento">Deslizamento</option>
-          <option value="interdicao">Interdição de via</option>
-          <option value="Queda de Arvore">Queda de Arvore</option>
-          <option value="outro">Outro</option>
+          <option value="Alagamento">Alagamento</option>
+          <option value="Deslizamento">Deslizamento</option>
+          <option value="Interdição de via">Interdição de via</option>
+          <option value="Queda de Árvore">Queda de Árvore</option>
+          <option value="Outro">Outro</option>
         </select>
 
         <label for="reportDescription">Descrição:</label>
         <textarea
           id="reportDescription"
-          name="reportDescription"
+          name="Descricao"
           placeholder="Descreva o problema com detalhes"
           rows="4"
           required
@@ -89,30 +88,37 @@
       </form>
     </section>
 
-    <!-- Scripts do Leaflet e personalizados -->
+    <!-- Scripts -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="./assets/js/map.js"></script>
 
-    <!-- Script para exibir mensagem de sucesso -->
+    <!-- Script de envio -->
     <script>
       const form = document.getElementById('formReporte');
       const mensagem = document.getElementById('mensagemSucesso');
 
-      form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Impede envio real do formulário
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-        // Aqui você poderia adicionar lógica de envio real (ex: fetch para backend)
-
-        // Exibe a mensagem
-        mensagem.style.display = 'block';
-
-        // Limpa os campos
-        form.reset();
-
-        // Oculta a mensagem após 5 segundos
-        setTimeout(() => {
-          mensagem.style.display = 'none';
-        }, 5000);
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+        })
+          .then(response => {
+            if (response.ok) {
+              mensagem.style.display = 'block';
+              form.reset();
+              setTimeout(() => {
+                mensagem.style.display = 'none';
+              }, 5000);
+            } else {
+              alert('Erro ao enviar. Tente novamente.');
+            }
+          })
+          .catch(error => {
+            alert('Erro ao enviar: ' + error.message);
+          });
       });
     </script>
 
