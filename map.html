@@ -28,10 +28,12 @@
         <a href="./create_account.html">Entrar</a>
       </button>
     </header>
+
     <p>
       Visualize o mapa em modo normal ou satélite, e encontre qualquer local
       digitando o nome da cidade.
     </p>
+
     <!-- Formulário para busca manual de localizações -->
     <section id="manual-location" class="location-search">
       <label for="locationInput">Buscar local:</label>
@@ -49,7 +51,7 @@
         riscos.
       </p>
 
-      <form>
+      <form id="formReporte">
         <label for="reportLocation">Localização:</label>
         <input
           type="text"
@@ -79,6 +81,11 @@
         ></textarea>
 
         <button type="submit">Enviar Reporte</button>
+
+        <!-- Mensagem de sucesso -->
+        <div id="mensagemSucesso" style="display: none; color: green; margin-top: 10px;">
+          ✅ Seu reporte foi enviado com sucesso!
+        </div>
       </form>
     </section>
 
@@ -86,34 +93,56 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="./assets/js/map.js"></script>
 
+    <!-- Script para exibir mensagem de sucesso -->
+    <script>
+      const form = document.getElementById('formReporte');
+      const mensagem = document.getElementById('mensagemSucesso');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede envio real do formulário
+
+        // Aqui você poderia adicionar lógica de envio real (ex: fetch para backend)
+
+        // Exibe a mensagem
+        mensagem.style.display = 'block';
+
+        // Limpa os campos
+        form.reset();
+
+        // Oculta a mensagem após 5 segundos
+        setTimeout(() => {
+          mensagem.style.display = 'none';
+        }, 5000);
+      });
+    </script>
+
     <footer>
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>Sobre Nós</h3>
-        <p>Somos uma empresa dedicada a fornecer as melhores soluções digitais para você.</p>
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>Sobre Nós</h3>
+          <p>Somos uma empresa dedicada a fornecer as melhores soluções digitais para você.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Links Rápidos</h3>
+          <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Siga-nos</h3>
+          <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-section">
-        <h3>Links Rápidos</h3>
-        <ul>
-          <li><a href="./index.html">Início</a></li>
-          <li><a href="#">Serviços</a></li>
-          <li><a href="#">Contato</a></li>
-          <li><a href="#">Política de Privacidade</a></li>
-        </ul>
+      <div class="footer-bottom">
+        &copy; 2025 Sustentare. Todos os direitos reservados.
       </div>
-      <div class="footer-section">
-        <h3>Siga-nos</h3>
-        <ul>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Twitter</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2025 Sustentare. Todos os direitos reservados.
-    </div>
-  </footer>
-  
+    </footer>
   </body>
 </html>
