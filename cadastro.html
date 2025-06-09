@@ -142,41 +142,43 @@
     </footer>    
   </body>
   <script>
-    async function registrarConta() {
-      const dados = {
-        nome: document.getElementById("nome").value,
-        email: document.getElementById("email").value,
-        senha: document.getElementById("senha").value,
-        rua: document.getElementById("rua").value,
-        numero: document.getElementById("numero").value,
-        bairro: document.getElementById("bairro").value,
-        cidade: document.getElementById("cidade").value,
-        estado: document.getElementById("estado").value,
-      };
+     async function registrarConta(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
 
-      try {
-        const resposta = await fetch("/registrar", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(dados)
-        });
+    const dados = {
+      nome: document.getElementById("nome").value,
+      email: document.getElementById("email").value,
+      senha: document.getElementById("senha").value,
+      rua: document.getElementById("rua").value,
+      numero: document.getElementById("numero").value,
+      bairro: document.getElementById("bairro").value,
+      cidade: document.getElementById("cidade").value,
+      estado: document.getElementById("estado").value,
+    };
 
-        if (!resposta.ok) {
-          const erro = await resposta.text();
-          alert("Erro ao cadastrar: " + erro);
-          return;
-        }
+    try {
+      const resposta = await fetch("/registrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dados)
+      });
 
-        const msg = await resposta.text();
-        alert(msg);
-        // Redireciona ou limpa o formulário se desejar
-      } catch (err) {
-        alert("Erro de conexão com o servidor.");
-        console.error("Erro:", err);
+      if (!resposta.ok) {
+        const erro = await resposta.text();
+        alert("Erro ao cadastrar: " + erro);
+        return;
       }
+
+      const msg = await resposta.text();
+      alert(msg);
+      window.location.href = "./login.html"; // Redireciona após sucesso
+    } catch (err) {
+      alert("Erro de conexão com o servidor.");
+      console.error("Erro:", err);
     }
+  }
   </script>
   
 </html>

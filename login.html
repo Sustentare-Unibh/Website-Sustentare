@@ -23,8 +23,7 @@
     <div class="container">
       <!-- Se o usuário não estiver logado, mostramos o botão "Entrar", senão mostramos o "Sair" -->
       <a href="./cadastro.html" id="CadastroButton" class="button">Cadastrar</a>
-      <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
-      
+    
       <a href="./login.html" id="loginButton" class="button">Login</a>
       <button id="logoutButton" class="button" style="display: none;" onclick="logout()">Sair</button>
     </div>
@@ -33,7 +32,7 @@
     <div class="form-container">
       <h2>Login</h2>
 
-      <form onsubmit="login(); return false;">
+      <form onsubmit="login(event)">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required />
 
@@ -73,7 +72,46 @@
       &copy; 2025 Sustentare. Todos os direitos reservados.
     </div>
   </footer>
+<script>
+    async function login(event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
 
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      try {
+        const resposta = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, senha })
+        });
+
+        if (!resposta.ok) {
+          const erro = await resposta.text();
+          document.getElementById('status').textContent = 'Erro: ' + erro;
+          return;
+        }
+
+        const dados = await resposta.json();
+        // Armazena o token de autenticação (exemplo)
+        localStorage.setItem('token', dados.token);
+        
+        // Redireciona para página inicial
+        window.location.href = './index.html';
+      } catch (erro) {
+        document.getElementById('status').textContent = 'Erro de conexão com o servidor';
+        console.error('Erro:', erro);
+      }
+    }
+
+    // Função de logout (exemplo)
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.reload();
+    }
+  </script>
 
 
 </body>
