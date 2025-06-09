@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const db = mysql.createPool({
   connectionLimit: 10,
   host: process.env.DB_HOST || "mysqlsustentareserver.mysql.database.azure.com",
-  user: process.env.DB_USER || "mysqlsustentareserver@mysqlsustentareserver", // Formato obrigatório!
+  user: process.env.DB_USER || "mysqlsustentareserver", // Formato obrigatório!
   password: process.env.DB_PASSWORD || "Azure123$",
   database: process.env.DB_NAME || "sustentare",
   port: 3306,
