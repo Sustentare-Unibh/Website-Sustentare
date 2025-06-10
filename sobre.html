@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre | Sustentare</title>
+  <link rel="stylesheet" href="./assets/css/pages/Contato/index.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">Sustentare</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="map.html">Mapa</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+
+  <main>
+    <section class="sobre">
+      <h2>🌿 Sobre o Sustentare</h2>
+      <p>
+        O <strong>Sustentare</strong> é uma plataforma criada para manter a população informada sobre bloqueios em vias causados por desastres naturais.
+      </p>
+      <p>
+        Nossa missão é garantir a segurança de todos por meio de tecnologia e colaboração cidadã.
+      </p>
+      <ul>
+        <li>✅ Mapeamento colaborativo de áreas afetadas</li>
+        <li>✅ Alertas em tempo real por localização</li>
+        <li>✅ Notificações personalizadas</li>
+        <li>✅ Geolocalização automática</li>
+        <li>✅ Sistema de contas com preferências salvas</li>
+        <li>✅ Alertas por e-mail</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Sobre Nós</h3>
+        <p>Somos uma empresa dedicada a fornecer as melhores soluções digitais para você.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./sobre.html">Sobre</a></li>
+          <li><a href="./contato.html">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Sustentare. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <script>
+    window.onload = function () {
+      const loggedUser = sessionStorage.getItem("loggedUser");
+      document.getElementById("loginButton").style.display = loggedUser ? "none" : "inline";
+      document.getElementById("logoutButton").style.display = loggedUser ? "inline" : "none";
+    };
+    function logout() {
+      sessionStorage.removeItem("loggedUser");
+      window.location.reload();
+    }
+  </script>
+
+</body>
+</html>

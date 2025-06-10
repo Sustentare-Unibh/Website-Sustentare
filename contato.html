@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato | Sustentare</title>
+  <link rel="stylesheet" href="./assets/css/pages/Contato/index.css"/>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Sustentare</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="map.html">Mapa</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sobre">
+      <h2>📬 Contato</h2>
+      <p>Entre em contato conosco para dúvidas, sugestões ou parcerias:</p>
+      <ul style="text-align: left; font-size: 1em;">
+        <li><strong>Email:</strong> contato@sustentare.com</li>
+        <li><strong>Telefone:</strong> (11) 91234-5678</li>
+        <li><strong>Endereço:</strong> Rua das Árvores, 123 - São Paulo, SP</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Sobre Nós</h3>
+        <p>Somos uma empresa dedicada a fornecer as melhores soluções digitais para você.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./sobre.html">Sobre</a></li>
+          <li><a href="./contato.html">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Sustentare. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <script>
+    window.onload = function () {
+      const loggedUser = sessionStorage.getItem("loggedUser");
+      document.getElementById("loginButton").style.display = loggedUser ? "none" : "inline";
+      document.getElementById("logoutButton").style.display = loggedUser ? "inline" : "none";
+    };
+
+    function logout() {
+      sessionStorage.removeItem("loggedUser");
+      window.location.reload();
+    }
+
+    function enviarMensagem(event) {
+      event.preventDefault();
+      alert("Mensagem enviada com sucesso! Entraremos em contato em breve.");
+    }
+  </script>
+
+</body>
+</html>
