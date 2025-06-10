@@ -25,7 +25,7 @@ const db = mysql.createPool({
   port: 3306,
   ssl: {
     rejectUnauthorized: true,
-    ca: fs.readFileSync(path.join(__dirname, 'BaltimoreCyberTrustRoot.crt.pem')) // Certificado obrigatório
+     ca: fs.readFileSync(path.join(__dirname, '../BaltimoreCyberTrustRoot.crt.pem'))
   }
 });
 
