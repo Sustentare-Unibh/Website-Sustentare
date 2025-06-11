@@ -33,7 +33,7 @@ async function handleRegistro(event) {
   };
 
   try {
-    const res = await fetch('http://localhost:3000/registrar', {
+    const res = await fetch('http://localhost:8080/registrar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dados)
@@ -61,10 +61,10 @@ async function fazerLogin(event) {
   const senha = document.getElementById('senha').value;
 
   try {
-    const res = await fetch('http://localhost:3000/login', {
+    const res = await fetch('http://localhost:8080/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, senha })
+      body: JSON.stringify(dados)
     });
     
     const data = await res.json();

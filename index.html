@@ -39,7 +39,7 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ nome, email, senha }),
+        body: JSON.stringify({ email, senha }),
       })
         .then((response) => response.json())
         .then((data) => {
